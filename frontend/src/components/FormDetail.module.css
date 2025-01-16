@@ -1,0 +1,21 @@
+#title {
+  font-size: 1rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+#subtitle {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #334155;
+  font-weight: 600;
+}
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.cta Button {
+  margin: 0 0.5rem;
+}
+

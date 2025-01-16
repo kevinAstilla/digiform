@@ -1,0 +1,7 @@
+.env*
+!.env.project
+!.env.vault
+**/node_modules/
+**/.env*
+**/backend/uploads/*
+**/*.log
