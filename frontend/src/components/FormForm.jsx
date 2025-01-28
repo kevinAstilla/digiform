@@ -2,8 +2,6 @@ import { Form, useNavigate, redirect } from "react-router-dom";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import style from "./FormForm.module.css";
-import FormData from "../data/form.js";
-
 import { toISODate } from "../utils/dateFormatter.js";
 
 export async function action({ request, params }) {
@@ -18,18 +16,21 @@ export async function action({ request, params }) {
     createdAt: new Date(data.get("createdAt")),
     updatedAt: data.get("createdAt"),
   };
+  let apiUrl = `${import.meta.env.VITE_API_URL}/forms`;
 
   if (method === "PUT") {
-    const dataIndex = FormData.findIndex((form) => form.id === params.formId);
-    FormData[dataIndex] = {
-      ...FormData[dataIndex],
-      ...formData,
-    };
-  } else if (method === "POST") {
-    FormData.push({
-      id: String(FormData.length + 1),
-      ...formData,
-    });
+    apiUrl += `/${params.formId}`;
+  }
+  const response = await fetch(apiUrl, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (!response.ok) {
+    throw new Response({ message: "Failed to save form" }, { status: 500 });
   }
 
   return redirect("..");

@@ -1,4 +1,4 @@
-const forms = [
+const templates = [
     {
       id: "1",
       name: "Basic User Registration Form",
@@ -224,4 +224,4 @@ const forms = [
     }
   ];
 
-  export default forms;
+  export default templates;

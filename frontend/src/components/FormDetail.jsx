@@ -9,6 +9,7 @@ import style from "./FormDetail.module.css";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
 
 export default function FormDetail({ form }) {
+  console.log(form);
   const navigate = useNavigate();
   const submit = useSubmit();
   const {
@@ -55,7 +56,9 @@ export default function FormDetail({ form }) {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
           <h1 id={style.title}>{form.name}</h1>
-          <p id={style.subtitle}>Created at: {dateFormatter(form.createdAt)}</p>
+          <p id={style.subtitle}>
+            Created at: {dateFormatter(form.created_at)}
+          </p>
         </div>
 
         <div>
@@ -73,11 +76,7 @@ export default function FormDetail({ form }) {
         </div>
       </div>
 
-      <FormComponent
-        form={form.formSchema.form}
-        ui={form.formSchema.ui}
-        onSubmit={onSubmitHandler}
-      />
+      <FormComponent templateId={form.template_id} onSubmit={onSubmitHandler} />
     </>
   );
 }

@@ -22,9 +22,9 @@ export default function FormList({ forms }) {
         {forms.map((form) => (
           <tr key={form.id} onClick={() => navigateToForm(form.id)}>
             <td>{form.name}</td>
-            <td>{form.createdBy}</td>
-            <td>{dateFormatter(form.createdAt)}</td>
-            <td>{dateFormatter(form.updatedAt)}</td>
+            <td>{form.created_by}</td>
+            <td>{dateFormatter(form.created_at)}</td>
+            <td>{dateFormatter(form.updated_at)}</td>
           </tr>
         ))}
       </tbody>

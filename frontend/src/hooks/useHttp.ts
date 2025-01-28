@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState } from 'react';
 interface UseHttpProps {
     url: string;
     config: any;
-    initialData: any;
-}
+    initialData?: any;
+};
 
 async function sendHttpRequest(url: string, config: any) {
     const response = await fetch(url, config);
@@ -16,7 +16,7 @@ async function sendHttpRequest(url: string, config: any) {
     return responseData;
 }
 
-export default function UseHttp({url, config, initialData}:UseHttpProps) {
+export default function UseHttp({url, config, initialData = null}:UseHttpProps) {
     const [data, setData ] = useState(initialData);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
@@ -29,8 +29,6 @@ export default function UseHttp({url, config, initialData}:UseHttpProps) {
         async function sendRequest(data: any = undefined) {
             setIsLoading(true);
             try {
-                console.log('sending request');
-                console.log(JSON.stringify(data));
                 const response = await sendHttpRequest(url, {
                     ...config,
                     headers: {
