@@ -14,13 +14,13 @@ import LoginPage, {
   loader as LoginLoader,
 } from "./pages/LoginPage";
 import { action as LogoutAction } from "./pages/LogoutPage";
-
 import { action as formManipulationAction } from "./components/FormForm";
 import { isAuthenticatedLoader } from "./utils/auth";
 
 import FormComponent from "./components/FormComponent";
 
 import "./App.css";
+import TemplatesPage, { loader as TemplateLoader } from "./pages/TemplatesPage";
 
 const routes = createBrowserRouter([
   {
@@ -63,6 +63,16 @@ const routes = createBrowserRouter([
                 element: <FormEditPage />,
               },
             ],
+          },
+        ],
+      },
+      {
+        path: "templates",
+        children: [
+          {
+            index: true,
+            element: <TemplatesPage />,
+            loader: TemplateLoader,
           },
         ],
       },

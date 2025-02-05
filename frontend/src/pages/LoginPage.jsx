@@ -1,7 +1,11 @@
 import { Form, redirect } from "react-router-dom";
+import style from "./LoginPage.module.css";
 import UseHttp from "../hooks/useHttp";
+
+import Buton from "../UI/Button";
 import Input from "../UI/Input";
 import { getAuthToken, setAuthToken } from "../utils/auth";
+import loginBackground from "../assets/login_image.jpg";
 
 export async function action({ request }) {
   if (request.method === "POST") {
@@ -67,13 +71,22 @@ export function loader() {
 
 export default function LoginPage() {
   return (
-    <div>
-      <h1>Login</h1>
-      <Form method="POST">
-        <Input id="email" label="Email" type="email" />
-        <Input id="password" label="Password" type="password" />
-        <button type="submit">Login</button>
-      </Form>
+    <div
+      style={{
+        background: `url(${loginBackground})`,
+        "background-size": "cover",
+        "background-position": "center",
+      }}
+      className={style.background}
+    >
+      <div className={style.overlay}></div>
+      <div className={style.loginForm}>
+        <Form method="POST">
+          <Input id="email" label="Email" type="email" />
+          <Input id="password" label="Password" type="password" />
+          <Buton type="submit">Login</Buton>
+        </Form>
+      </div>
     </div>
   );
 }

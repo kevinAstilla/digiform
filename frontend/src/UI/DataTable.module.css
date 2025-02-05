@@ -1,0 +1,38 @@
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .dataTable thead th {
+    background-color: #e3e6ea;
+    color: inherit;
+    font-weight: bold;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .dataTable tbody tr {
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+  }
+  
+  .clickable:hover {
+    background-color: #ddd;
+    cursor: pointer;
+  }
+  
+  .dataTable tbody tr td {
+    padding: 10px;
+    color: inherit;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: end;
+  }

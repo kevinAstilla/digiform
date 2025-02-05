@@ -9,7 +9,6 @@ import style from "./FormDetail.module.css";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
 
 export default function FormDetail({ form }) {
-  console.log(form);
   const navigate = useNavigate();
   const submit = useSubmit();
   const {

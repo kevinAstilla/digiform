@@ -1,5 +1,4 @@
 import { NavLink, Form } from "react-router-dom";
-import Button from "../UI/Button";
 import style from "./Navigation.module.css";
 import UserPanel from "./UserPanel";
 export default function Navigation() {
@@ -12,6 +11,11 @@ export default function Navigation() {
             <li>
               <NavLink to="/" className={style.linkNavigation}>
                 Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/templates" className={style.linkNavigation}>
+                Template
               </NavLink>
             </li>
             <li>

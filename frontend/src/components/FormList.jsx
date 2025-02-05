@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { dateFormatter } from "../utils/dateFormatter";
+import DataTable from "../UI/DataTable";
 
 import style from "./FormList.module.css";
 export default function FormList({ forms }) {
@@ -9,25 +10,19 @@ export default function FormList({ forms }) {
     navigate(id);
   }
   return (
-    <table className={style.dataTable}>
-      <thead>
-        <tr>
-          <th>Form Name</th>
-          <th>Create By</th>
-          <th>Created At</th>
-          <th>Updated At</th>
-        </tr>
-      </thead>
-      <tbody>
-        {forms.map((form) => (
-          <tr key={form.id} onClick={() => navigateToForm(form.id)}>
-            <td>{form.name}</td>
-            <td>{form.created_by}</td>
-            <td>{dateFormatter(form.created_at)}</td>
-            <td>{dateFormatter(form.updated_at)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <DataTable
+      values={forms.map((val) => ({
+        ...val,
+        createdAt: dateFormatter(val.created_at),
+        updatedAt: dateFormatter(val.updated_at),
+      }))}
+      columns={{
+        id: "ID",
+        name: "Name",
+        createdAt: "Created At",
+        updatedAt: "Updated At",
+      }}
+      onRowClick={({ index }) => navigateToForm(forms[index].id)}
+    />
   );
 }

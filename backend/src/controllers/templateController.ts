@@ -32,3 +32,23 @@ export const getTemplate: RequestHandler = async (req: Request, res: Response): 
         }
     }
 }
+
+export const deleteTemplate: RequestHandler = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id } = req.params;
+        const template = templates.find((template) => template.id === id);
+        
+        if (template) {
+            templates.splice(templates.indexOf(template), 1);
+            res.status(200).json({ message: "Template Deleted Successfully" });
+        } else {
+            throw new Error("Template Not Found");
+        }
+    } catch (error: unknown) {
+        if ( error instanceof Error) {
+            res.status(500).json({ message: error.message || "Internal Error Occured" });
+        } else {
+            res.status(500).json({ message: "Internal Error Occured" });
+        }
+    }
+}
