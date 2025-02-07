@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import FormComponent from "../components/FormComponent";
 import { dateFormatter } from "../utils/dateFormatter";
 
 import Modal from "../UI/Modal";
@@ -24,6 +25,7 @@ export async function loader() {
 
 export default function TemplatesPage() {
   const [showModal, setShowModal] = useState(false);
+  const [templatePreview, setTemplatePreview] = useState(null);
   const { templates: initialTemplates } = useLoaderData();
   const {
     data: templates,
@@ -37,7 +39,9 @@ export default function TemplatesPage() {
 
   function previewHandler({ index }) {
     setShowModal(true);
-    console.log("Preview clicked " + showModal);
+    setTemplatePreview(() => {
+      return templates[index].id;
+    });
   }
 
   function edit() {
@@ -64,7 +68,6 @@ export default function TemplatesPage() {
       }
       getTemplates();
     }
-    console.log("delete clicked " + index);
   }
 
   const menuOptions = [
@@ -86,12 +89,12 @@ export default function TemplatesPage() {
 
   return (
     <div>
-      <Modal open={showModal}>
-        <Button onClick={() => setShowModal(false)}>Close</Button>
-        <h1>Modal</h1>
-        <p>Modal Content</p>
+      <Modal open={showModal} onClose={() => setShowModal(false)}>
+        {templatePreview && (
+          <FormComponent templateId={templatePreview} isPreview={true} />
+        )}
       </Modal>
-      <h1>Templates</h1>
+      <h1>Templates {showModal}</h1>
       <DataTable
         values={templates.map((val) => ({
           ...val,

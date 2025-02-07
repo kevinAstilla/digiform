@@ -35,11 +35,50 @@ const templates = [
         },
       },
       ui:{
+        "ui:options": {
+          label: true, // Hides labels for a cleaner look
+        },
+        username: {
+          "ui:widget": "text",
+          "ui:autofocus": true,
+          "ui:placeholder": "Enter your username",
+          "ui:style": {
+            width: "100%",
+            padding: "12px",
+            borderRadius: "8px",
+            transition: "all 0.3s ease",
+            fontSize: "16px",
+          },
+        },
         password: {
           "ui:widget": "password",
+          "ui:placeholder": "Enter a secure password",
+          "ui:style": {
+            width: "100%",
+            padding: "12px",
+            borderRadius: "8px",
+            fontSize: "16px",
+          },
+        },
+        email: {
+          "ui:widget": "email",
+          "ui:placeholder": "Enter your email",
+          "ui:style": {
+            width: "100%",
+            padding: "12px",
+            borderRadius: "8px",
+            fontSize: "16px",
+          },
         },
         agreeToTerms: {
           "ui:widget": "checkbox",
+          "ui:options": { label: false },
+          "ui:style": {
+            width: "100%",
+            height: "20px",
+            cursor: "pointer",
+            accentColor: "#007bff",
+          },
         },
       }
     },

@@ -15,7 +15,6 @@ export const getTemplates: RequestHandler = async (req: Request, res: Response):
 
 export const getTemplate: RequestHandler = async (req: Request, res: Response): Promise<void> => {
     try {
-        console.log('here');
         const { id } = req.params;
         const template = templates.find((template) => template.id === id);
         

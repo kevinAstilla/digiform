@@ -28,6 +28,7 @@ export default function UseHttp({url, config, initialData = null}:UseHttpProps) 
     const sendRequest = useCallback(
         async function sendRequest(data: any = undefined) {
             setIsLoading(true);
+            setError(null);
             try {
                 const response = await sendHttpRequest(url, {
                     ...config,
@@ -52,7 +53,7 @@ export default function UseHttp({url, config, initialData = null}:UseHttpProps) 
         ) {
             sendRequest();
         }
-    }, [sendRequest, config]);
+    }, [sendRequest, config, url]);
 
     return {
         isLoading,

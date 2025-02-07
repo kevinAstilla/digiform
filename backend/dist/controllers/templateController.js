@@ -30,7 +30,6 @@ const getTemplates = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.getTemplates = getTemplates;
 const getTemplate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log('here');
         const { id } = req.params;
         const template = templates_1.default.find((template) => template.id === id);
         if (template) {

@@ -8,5 +8,7 @@ const formController_1 = require("@/controllers/formController");
 const router = express_1.default.Router();
 router.get('/', formController_1.getForms);
 router.get('/:id', formController_1.getForm);
+router.post('/:id/submit', formController_1.submitForm);
+router.delete('/:id', formController_1.deleteForm);
 exports.default = router;
 //# sourceMappingURL=forms.js.map

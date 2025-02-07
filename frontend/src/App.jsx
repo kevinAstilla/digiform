@@ -2,13 +2,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorLayout from "./layouts/ErrorLayout";
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
-import FormsPage, { loader as formsDataLoader } from "./pages/FormsPage";
+import FormsPage from "./pages/FormsPage";
 import FormNewPage from "./pages/FormNewPage";
 import FormDetailPage, {
   loader as formDataLoader,
   action as formDetailAction,
 } from "./pages/FormDetailPage";
 import FormEditPage from "./pages/FormEditPage";
+import FormNewSubmissionPage from "./pages/FormNewSubmissionPage";
 import LoginPage, {
   action as LoginAction,
   loader as LoginLoader,
@@ -16,7 +17,6 @@ import LoginPage, {
 import { action as LogoutAction } from "./pages/LogoutPage";
 import { action as formManipulationAction } from "./components/FormForm";
 import { isAuthenticatedLoader } from "./utils/auth";
-
 import FormComponent from "./components/FormComponent";
 
 import "./App.css";
@@ -39,7 +39,6 @@ const routes = createBrowserRouter([
         children: [
           {
             index: true,
-            loader: formsDataLoader,
             element: <FormsPage />,
           },
           {
@@ -61,6 +60,10 @@ const routes = createBrowserRouter([
                 path: "edit",
                 action: formManipulationAction,
                 element: <FormEditPage />,
+              },
+              {
+                path: "newsubmission",
+                element: <FormNewSubmissionPage />,
               },
             ],
           },
