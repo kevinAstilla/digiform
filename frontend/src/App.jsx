@@ -4,10 +4,7 @@ import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import FormsPage from "./pages/FormsPage";
 import FormNewPage from "./pages/FormNewPage";
-import FormDetailPage, {
-  loader as formDataLoader,
-  action as formDetailAction,
-} from "./pages/FormDetailPage";
+import FormDetailPage, { loader as formLoader } from "./pages/FormDetailPage";
 import FormEditPage from "./pages/FormEditPage";
 import FormNewSubmissionPage from "./pages/FormNewSubmissionPage";
 import LoginPage, {
@@ -18,6 +15,7 @@ import { action as LogoutAction } from "./pages/LogoutPage";
 import { action as formManipulationAction } from "./components/FormForm";
 import { isAuthenticatedLoader } from "./utils/auth";
 import FormComponent from "./components/FormComponent";
+import SubmissionsPage from "./pages/SubmissionsPage";
 
 import "./App.css";
 import TemplatesPage, { loader as TemplateLoader } from "./pages/TemplatesPage";
@@ -49,17 +47,16 @@ const routes = createBrowserRouter([
           {
             path: ":formId",
             id: "formDetail",
-            loader: formDataLoader,
+            loader: formLoader,
             children: [
               {
                 index: true,
-                action: formDetailAction,
                 element: <FormDetailPage />,
               },
               {
-                path: "edit",
+                path: "submissions",
                 action: formManipulationAction,
-                element: <FormEditPage />,
+                element: <SubmissionsPage />,
               },
               {
                 path: "newsubmission",

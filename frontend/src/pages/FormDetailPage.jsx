@@ -1,4 +1,4 @@
-import { useRouteLoaderData, redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import FormDetail from "../components/FormDetail";
 
 export async function loader({ params }) {
@@ -12,25 +12,16 @@ export async function loader({ params }) {
   }
   const form = await response.json();
 
-  return { form };
-}
-
-export async function action({ request, params }) {
-  const apiUrl = import.meta.env.VITE_API_URL;
-  if (request.method === "DELETE") {
-    const response = await fetch(`${apiUrl}/forms/${params.formId}`, {
-      method: "DELETE",
-    });
-
-    if (!response.ok) {
-      throw new Response({ message: "Failed to delete form" }, { status: 500 });
-    }
-    return redirect("/forms");
-  }
-  return null;
+  return { form: form };
 }
 
 export default function FormDetailPage() {
-  const { form } = useRouteLoaderData("formDetail");
+  const { formId } = useParams();
+  return (
+    <>
+      <div>Dashboard</div>
+      <div>submissions</div>
+    </>
+  );
   return <FormDetail form={form} />;
 }

@@ -5,3 +5,17 @@ body {
 * {
   font-family: 'Roboto', sans-serif;
 }
+
+.page-title {
+  size: 3rem;
+  font-weight: 700;
+}
+
+.spinning-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

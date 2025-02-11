@@ -32,6 +32,27 @@ export const getForm: RequestHandler = async (req: Request, res: Response): Prom
     }
 }
 
+export const getSubmissions: RequestHandler = async(req: Request, res: Response): Promise<void> => {
+    try {
+        const { id } = req.params;
+        const form = forms.find((form) => form.id === id);
+        if (!form) {
+            throw new Error("Form Not Found");
+        }
+
+        const formSubmissions = submissions.filter((submissions) => submissions.form_id === id);
+
+        res.status(200).json(formSubmissions);
+
+    } catch (error: unknown) {
+        if ( error instanceof Error) {
+            res.status(500).json({ message: error.message || "Internal Error Occured" });
+        } else {
+            res.status(500).json({ message: "Internal Error Occured" });
+        }
+    }
+}
+
 export const submitForm: RequestHandler = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params;
@@ -44,6 +65,8 @@ export const submitForm: RequestHandler = async (req: Request, res: Response): P
         submissions.push({
            id: submissions.length,
            form_id: form.id,
+           created_at: new Date().toISOString(),
+           submitted_at: new Date().toISOString(),
            data 
         })
         res.status(200).json({message: submissions})

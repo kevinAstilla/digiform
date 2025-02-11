@@ -15,6 +15,11 @@ export default function FormList({ forms, onRefresh = null }) {
     navigate(`${form.id}/newsubmission`);
   }
 
+  function submissionsHandler({ index }) {
+    const form = forms[index];
+    navigate(`${form.id}/submissions`);
+  }
+
   async function deleteFormHandler({ index }) {
     const form = forms[index];
     const proceed = window.confirm(
@@ -42,6 +47,10 @@ export default function FormList({ forms, onRefresh = null }) {
     {
       label: "Make Submission",
       action: makeSubmissionHandler,
+    },
+    {
+      label: "Submissions",
+      action: submissionsHandler,
     },
     {
       label: "Dashboard",
