@@ -53,12 +53,23 @@ exports.getForm = getForm;
 const getSubmissions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
+        const { page } = req.query;
+        console.log(req.query);
+        let startIndex = 0;
+        if (page) {
+            startIndex = (Number(page) - 1) * 5;
+        }
         const form = forms_1.default.find((form) => form.id === id);
         if (!form) {
             throw new Error("Form Not Found");
         }
         const formSubmissions = submissions_1.default.filter((submissions) => submissions.form_id === id);
-        res.status(200).json(formSubmissions);
+        const response = {
+            totalPages: Math.ceil(formSubmissions.length / 5),
+            currentPage: page ? Number(page) : 1,
+            data: formSubmissions.slice(startIndex, startIndex + 5)
+        };
+        res.status(200).json(response);
     }
     catch (error) {
         if (error instanceof Error) {
@@ -79,7 +90,7 @@ const submitForm = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             throw new Error("Form Not Found");
         }
         submissions_1.default.push({
-            id: submissions_1.default.length,
+            id: submissions_1.default.length + 1,
             form_id: form.id,
             created_at: new Date().toISOString(),
             submitted_at: new Date().toISOString(),

@@ -1,11 +1,27 @@
+.buttonBase {
+  display: flex;
+  gap: "8px";
+  align-items: center;
+  justify-content: center;
+  padding: .5rem 1rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem
+}
+
 .button {
   font: inherit;
   cursor: pointer;
   background-color: #4b75f2;
   border: 1px solid #4b75f2;
   color: #fefefe;
-  padding: 0.5rem 1.5rem;
   border-radius: 4px;
+}
+
+.button:disabled {
+  cursor: auto;
+  border: 1px solid #999999 !important;
+  background-color: #cccccc !important;
+  color: #666666 !important;
 }
 
 .outlined {
@@ -14,6 +30,7 @@
 }
 
 .rounded {
+  padding: .5rem !important;
   border-radius: 2rem;
 }
 
@@ -36,4 +53,13 @@
 .textButton:hover,
 .textButton:active {
   color: #415aa6;
+  background-color: ;
+}
+
+.textButton:disabled {
+  font: inherit;
+  cursor: auto;
+  background-color: transparent !important;
+  border: none !important;
+  color: #666666 !important;
 }

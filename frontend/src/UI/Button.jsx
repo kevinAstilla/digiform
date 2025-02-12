@@ -5,7 +5,7 @@ export default function Button({
   textOnly,
   rounded,
   outlined,
-  className,
+  className = "",
   ...props
 }) {
   let classes = style.button;
@@ -15,7 +15,7 @@ export default function Button({
   classes = outlined ? `${classes} ${style.outlined}` : classes;
 
   classes = textOnly ? style.textButton : classes;
-  classes += ` ${className}`;
+  classes += ` ${style.buttonBase} ${className}`;
   return (
     <button className={classes} {...props}>
       {children}

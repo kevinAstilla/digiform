@@ -35,14 +35,25 @@ export const getForm: RequestHandler = async (req: Request, res: Response): Prom
 export const getSubmissions: RequestHandler = async(req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params;
+        const { page } = req.query;
+        console.log(req.query)
+        let startIndex = 0
+        if( page ) {
+            startIndex = (Number(page) - 1) * 5;
+        }
+
         const form = forms.find((form) => form.id === id);
         if (!form) {
             throw new Error("Form Not Found");
         }
 
         const formSubmissions = submissions.filter((submissions) => submissions.form_id === id);
-
-        res.status(200).json(formSubmissions);
+        const response = {
+            totalPages: Math.ceil(formSubmissions.length / 5),
+            currentPage: page ? Number(page) : 1,
+            data: formSubmissions.slice(startIndex, startIndex + 5)
+        }
+        res.status(200).json(response);
 
     } catch (error: unknown) {
         if ( error instanceof Error) {
@@ -63,7 +74,7 @@ export const submitForm: RequestHandler = async (req: Request, res: Response): P
             throw new Error("Form Not Found");
         }
         submissions.push({
-           id: submissions.length,
+           id: submissions.length + 1,
            form_id: form.id,
            created_at: new Date().toISOString(),
            submitted_at: new Date().toISOString(),
