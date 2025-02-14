@@ -1,33 +1,64 @@
-import { NavLink, Form } from "react-router-dom";
-import style from "./Navigation.module.css";
+import { NavLink, Form, useRouteLoaderData } from "react-router-dom";
+import {
+  IconTemplate,
+  IconForms,
+  IconLogout2,
+  IconUser,
+  IconAdjustmentsAlt,
+} from "@tabler/icons-react";
+
 import UserPanel from "./UserPanel";
+import Button from "../UI/Button";
+import style from "./Navigation.module.css";
+
 export default function Navigation() {
+  const { email, firstname, lastname } = useRouteLoaderData("root");
   return (
     <aside>
       <div>
-        <h2>Header</h2>
         <nav className={style.navigation}>
           <ul>
             <li>
-              <NavLink to="/" className={style.linkNavigation}>
-                Home
-              </NavLink>
-            </li>
-            <li>
               <NavLink to="/templates" className={style.linkNavigation}>
-                Template
+                <IconTemplate /> Template
               </NavLink>
             </li>
             <li>
               <NavLink to="/forms" className={style.linkNavigation}>
-                Form
+                <IconForms /> Form
               </NavLink>
             </li>
           </ul>
         </nav>
       </div>
 
-      <UserPanel />
+      <div>
+        <div className={style.linkNavigation}>
+          <IconAdjustmentsAlt /> Settings
+        </div>
+        <Form action="/logout" method="POST" className={style.row}>
+          <Button
+            type="submit"
+            style={{
+              width: "100%",
+              padding: ".5rem .5rem",
+              justifyContent: "left",
+            }}
+            className={style.linkNavigation}
+          >
+            <IconLogout2 /> Logout
+          </Button>
+        </Form>
+        <div className={style.linkNavigation}>
+          <IconUser />
+          <div className={style.userInfo}>
+            <span>
+              {firstname} {lastname}
+            </span>
+            <span>{email}</span>
+          </div>
+        </div>
+      </div>
     </aside>
   );
 }

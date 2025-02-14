@@ -1,3 +1,14 @@
 body {
     background-color: #F2F2F2;
+    color: #333333
 }
+
+aside {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    background-color: #4b75f2;
+    color: #fefefe;
+  }

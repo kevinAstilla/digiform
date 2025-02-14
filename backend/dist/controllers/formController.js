@@ -54,7 +54,6 @@ const getSubmissions = (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const { id } = req.params;
         const { page } = req.query;
-        console.log(req.query);
         let startIndex = 0;
         if (page) {
             startIndex = (Number(page) - 1) * 5;

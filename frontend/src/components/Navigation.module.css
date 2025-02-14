@@ -1,15 +1,3 @@
-aside {
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: left;
-  background-color: #4b75f2;
-  color: #fefefe;
-  padding: 1rem 1rem;
-}
-
-
 .navigation ul {
   list-style: none;
   margin: 0;
@@ -19,11 +7,20 @@ aside {
 
 .linkNavigation {
   text-decoration: none;
-  display: block;
-  padding: 1rem 0rem;
+  padding: .5rem .5rem;
   color: #fefefe;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .linkNavigation:hover {
   background-color: #415aa6;
+}
+
+.userInfo {
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

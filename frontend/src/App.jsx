@@ -1,7 +1,10 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import ErrorLayout from "./layouts/ErrorLayout";
 import MainLayout from "./layouts/MainLayout";
-import HomePage from "./pages/HomePage";
 import FormsPage from "./pages/FormsPage";
 import FormNewPage from "./pages/FormNewPage";
 import FormDetailPage, { loader as formLoader } from "./pages/FormDetailPage";
@@ -19,6 +22,7 @@ import SubmissionsPage from "./pages/SubmissionsPage";
 
 import "./App.css";
 import TemplatesPage, { loader as TemplateLoader } from "./pages/TemplatesPage";
+import SubmissionLayout from "./layouts/SubmissionLayout";
 
 const routes = createBrowserRouter([
   {
@@ -30,7 +34,7 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <Navigate to="/forms" replace />,
       },
       {
         path: "forms",
@@ -57,10 +61,6 @@ const routes = createBrowserRouter([
                 path: "submissions",
                 action: formManipulationAction,
                 element: <SubmissionsPage />,
-              },
-              {
-                path: "newsubmission",
-                element: <FormNewSubmissionPage />,
               },
             ],
           },
@@ -91,6 +91,16 @@ const routes = createBrowserRouter([
     element: <LoginPage />,
     action: LoginAction,
     loader: LoginLoader,
+  },
+  {
+    path: "/forms/:formId/newsubmission",
+    element: <SubmissionLayout />,
+    children: [
+      {
+        index: true,
+        element: <FormNewSubmissionPage />,
+      },
+    ],
   },
 ]);
 

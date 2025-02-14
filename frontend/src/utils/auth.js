@@ -14,7 +14,7 @@ export function removeAuthToken() {
 
 export function isAuthenticatedLoader() {
     const token = getAuthToken();
-    return true;
+
     if (!token) {
         return redirect("/login");
     }

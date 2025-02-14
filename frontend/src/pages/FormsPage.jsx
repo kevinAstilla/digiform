@@ -24,7 +24,11 @@ export default function FormsPage() {
 
   return (
     <>
-      <Button onClick={() => handleNewForm()}>New</Button>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h1 className="page-title">Forms</h1>
+        <Button onClick={() => handleNewForm()}>New</Button>
+      </div>
+
       <FormList forms={forms} onRefresh={getForms} />
     </>
   );

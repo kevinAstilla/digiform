@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { dateFormatter } from "../utils/dateFormatter";
 import UseHttp from "../hooks/useHttp";
 import FormComponent from "../components/FormComponent";
+import CollapsableSidebar from "../UI/CollapsableSidebar";
+import { IconArrowBackUp } from "@tabler/icons-react";
 import style from "./FormNewSubmissionPage.module.css";
+import Button from "../UI/Button";
+
 export default function FormNewSubmissionPage() {
   const { formId } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const {
     data: form,
@@ -50,12 +56,46 @@ export default function FormNewSubmissionPage() {
     return <h1>is loading</h1>;
   }
   return (
-    <div className={style.form}>
-      <FormComponent
-        formData={formData}
-        templateId={form.template_id}
-        onSubmit={onSubmit}
-      />
-    </div>
+    <>
+      <CollapsableSidebar>
+        <div className={style.sideMenu}>
+          <h3 style={{ fontWeight: 700, margin: 0 }}>{form.name}</h3>
+          <span>
+            Created At:{" "}
+            <span style={{ fontWeight: 600 }}>
+              {dateFormatter(form.created_at)}
+            </span>
+          </span>
+          <span>
+            Updated At:{" "}
+            <span style={{ fontWeight: 600 }}>
+              {dateFormatter(form.updated_at)}
+            </span>
+          </span>
+        </div>
+
+        <div className={style.sideMenu}>
+          <Button
+            style={{
+              justifyContent: "left",
+            }}
+            outlined
+            onClick={() => {
+              navigate("/forms");
+            }}
+          >
+            <IconArrowBackUp />
+            Exit
+          </Button>
+        </div>
+      </CollapsableSidebar>
+      <div className={style.form}>
+        <FormComponent
+          formData={formData}
+          templateId={form.template_id}
+          onSubmit={onSubmit}
+        />
+      </div>
+    </>
   );
 }

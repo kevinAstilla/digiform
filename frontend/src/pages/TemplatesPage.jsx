@@ -94,7 +94,7 @@ export default function TemplatesPage() {
           <FormComponent templateId={templatePreview} isPreview={true} />
         )}
       </Modal>
-      <h1>Templates {showModal}</h1>
+      <h1 className="page-title">Templates</h1>
       <DataTable
         values={templates.map((val) => ({
           ...val,

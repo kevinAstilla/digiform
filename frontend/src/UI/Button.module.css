@@ -41,7 +41,6 @@
   color: #fefefe;
 }
 
-
 .textButton {
   font: inherit;
   cursor: pointer;
@@ -53,7 +52,7 @@
 .textButton:hover,
 .textButton:active {
   color: #415aa6;
-  background-color: ;
+  text-decoration: underline;
 }
 
 .textButton:disabled {

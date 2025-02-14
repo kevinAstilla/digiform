@@ -1,0 +1,26 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -270px;
+    width: 250px;
+    height: 100vh;
+    max-height: 100vh;
+    background: white;
+    color: inherit;
+    transition: left 0.3s ease-in-out;
+    border: 2px solid #4b75f2;
+    padding: 0rem;
+    gap:8px;
+}
+
+.open {
+    left: 0;
+}
+
+.sideToggleBtn {
+    width: 50px;
+    top: 0;
+    position: absolute;
+    right: -50px;
+}
+
